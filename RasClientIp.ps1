@@ -43,9 +43,9 @@ $Pass = Get-VarFromFile $Global:GlobalKey1 $Global:APP_SCRIPT_ADMIN_Pass
 
 $Credentials = New-Object System.Management.Automation.PSCredential -ArgumentList $User, ($Pass | ConvertTo-SecureString  -AsPlainText -Force)
 
-$Global:PSSession1 = New-PSSession -ComputerName $Global:Computer  -Credential $Credentials 
+#$Global:PSSession1 = New-PSSession -ComputerName $Global:Computer  -Credential $Credentials 
 
-$output = Invoke-Command -Session $Global:PSSession1 -ScriptBlock {`
+$output = Invoke-Command -ComputerName  $Global:Computer  -Credential $Credentials  -ScriptBlock {`
     Function DigitToStrIPAddress($Digit9IPAddress) {
         # Формируем IP адрес из числового представления 
         $bin = [convert]::ToString([int32]$Digit9IPAddress, 2).PadLeft(32, '0').ToCharArray()
