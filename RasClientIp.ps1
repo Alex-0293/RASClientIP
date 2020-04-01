@@ -44,7 +44,7 @@ $Pass = Get-VarFromFile $Global:GlobalKey1 $Global:APP_SCRIPT_ADMIN_Pass
 $Credentials = New-Object System.Management.Automation.PSCredential -ArgumentList $User, ($Pass | ConvertTo-SecureString  -AsPlainText -Force)
 
 #$Global:PSSession1 = New-PSSession -ComputerName $Global:Computer  -Credential $Credentials 
-
+[array]$output = @() 
 $output = Invoke-Command -ComputerName  $Global:Computer  -Credential $Credentials  -ScriptBlock {`
     Function DigitToStrIPAddress($Digit9IPAddress) {
         # Формируем IP адрес из числового представления 
@@ -56,8 +56,8 @@ $output = Invoke-Command -ComputerName  $Global:Computer  -Credential $Credentia
         return $($A, $B, $C, $D -join ".")
     } 
     Import-Module ActiveDirectory
-    $output = @() # Инициализируем хэш массив
-    $ADUsers = get-aduser -filter * -Properties * | Where-Object { $_.msnpallowdialin -ne $null } #Выбираем всех пользователей с установленным RAS IP 
+    [array]$output = @()  # Инициализируем хэш массив
+    $ADUsers = get-aduser -filter * -Properties * | Where-Object { $_.msRADIUSFramedIPAddress -ne $null } #Выбираем всех пользователей с установленным RAS IP 
     Foreach ($AdUser in $ADUsers) {
         $res = [pscustomobject]@{
             Sam             = $AdUser.SamAccountName
