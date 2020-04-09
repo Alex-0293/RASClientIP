@@ -10,7 +10,7 @@ Import-Module AlexkUtils
 #requires -version 3
 
 #########################################################################
-function Get-Workdir () {
+function Get-WorkDir () {
     if ($PSScriptRoot -eq "") {
         if ($PWD -ne "") {
             $MyScriptRoot = $PWD
@@ -35,18 +35,18 @@ Clear-Host
 
 $MyScriptRoot = Get-Workdir
 
-Get-Vars    "$MyScriptRoot\Vars.ps1"
-InitLogging $MyScriptRoot "Latest"
+Get-VarsFromFile    "$MyScriptRoot\Vars.ps1"
+Initialize-Logging $MyScriptRoot "Latest"
 
-$User = Get-VarFromFile $Global:GlobalKey1 $Global:APP_SCRIPT_ADMIN_Login
-$Pass = Get-VarFromFile $Global:GlobalKey1 $Global:APP_SCRIPT_ADMIN_Pass
+$User = Get-VarFromAESFile $Global:GlobalKey1 $Global:APP_SCRIPT_ADMIN_Login
+$Pass = Get-VarFromAESFile $Global:GlobalKey1 $Global:APP_SCRIPT_ADMIN_Pass
 
-$Credentials = New-Object System.Management.Automation.PSCredential -ArgumentList $User, ($Pass | ConvertTo-SecureString  -AsPlainText -Force)
+$Credentials = New-Object System.Management.Automation.PSCredential -ArgumentList (Get-VarToString $User), $Pass
 
 #$Global:PSSession1 = New-PSSession -ComputerName $Global:Computer  -Credential $Credentials 
 [array]$output = @() 
 $output = Invoke-Command -ComputerName  $Global:Computer  -Credential $Credentials  -ScriptBlock {`
-    Function DigitToStrIPAddress($Digit9IPAddress) {
+        Function DigitToStrIPAddress($Digit9IPAddress) {
         # Формируем IP адрес из числового представления 
         $bin = [convert]::ToString([int32]$Digit9IPAddress, 2).PadLeft(32, '0').ToCharArray()
         $A = [convert]::ToByte($bin[0..7] -join "", 2)
