@@ -6,7 +6,14 @@
     PSVer:       4.0
     Author:     AlexK
 #>
-Import-Module AlexkUtils
+$ImportResult = Import-Module AlexkUtils  -PassThru
+if ($null -eq $ImportResult) {
+    Write-Host "Module 'AlexkUtils' does not loaded!"
+    exit 1
+}
+else {
+    $ImportResult = $null
+}
 #requires -version 3
 
 #########################################################################
