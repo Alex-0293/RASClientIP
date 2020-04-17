@@ -1,4 +1,4 @@
-<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04">
+﻿<Objs Version="1.1.0.1" xmlns="http://schemas.microsoft.com/powershell/2004/04">
   <Obj RefId="0">
     <TN RefId="0">
       <T>System.Management.Automation.PSCustomObject</T>
@@ -6,7 +6,7 @@
     </TN>
     <MS>
       <S N="Role">Administrator</S>
-      <S N="Path">C:\DATA\Projects\RASClientIP</S>
+      <S N="Path">C:\DATA\PROJECTS\RASClientIP</S>
       <Obj N="Right" RefId="1">
         <TN RefId="1">
           <T>System.Object[]</T>
@@ -24,9 +24,9 @@
           <T>System.Security.Principal.IdentityReference</T>
           <T>System.Object</T>
         </TN>
-        <ToString>Admin1@advalore.local</ToString>
+        <ToString>AB\User1</ToString>
         <Props>
-          <S N="Value">Admin1@advalore.local</S>
+          <S N="Value">AB\User1</S>
         </Props>
       </Obj>
     </MS>
@@ -35,7 +35,7 @@
     <TNRef RefId="0" />
     <MS>
       <S N="Role">Administrator</S>
-      <S N="Path">C:\DATA\Projects\RASClientIP\LOGS</S>
+      <S N="Path">C:\DATA\PROJECTS\RASClientIP\LOGS</S>
       <Obj N="Right" RefId="4">
         <TNRef RefId="1" />
         <LST>
@@ -50,7 +50,7 @@
     <TNRef RefId="0" />
     <MS>
       <S N="Role">Administrator</S>
-      <S N="Path">C:\DATA\Projects\RASClientIP\ACL</S>
+      <S N="Path">C:\DATA\PROJECTS\RASClientIP\ACL</S>
       <Obj N="Right" RefId="6">
         <TNRef RefId="1" />
         <LST>
@@ -65,7 +65,7 @@
     <TNRef RefId="0" />
     <MS>
       <S N="Role">Administrator</S>
-      <S N="Path">C:\DATA\Projects\RASClientIP\RASClientIP.ps1</S>
+      <S N="Path">C:\DATA\PROJECTS\RASClientIP\RASClientIP.ps1</S>
       <Obj N="Right" RefId="8">
         <TNRef RefId="1" />
         <LST>
@@ -80,7 +80,7 @@
     <TNRef RefId="0" />
     <MS>
       <S N="Role">Administrator</S>
-      <S N="Path">C:\DATA\Projects\RASClientIP\Vars.ps1</S>
+      <S N="Path">C:\DATA\PROJECTS\RASClientIP\Vars.ps1</S>
       <Obj N="Right" RefId="10">
         <TNRef RefId="1" />
         <LST>
@@ -95,7 +95,7 @@
     <TNRef RefId="0" />
     <MS>
       <S N="Role">Administrator</S>
-      <S N="Path">C:\DATA\Projects\RASClientIP\.gitignore</S>
+      <S N="Path">C:\DATA\PROJECTS\RASClientIP\.gitignore</S>
       <Obj N="Right" RefId="12">
         <TNRef RefId="1" />
         <LST>
@@ -110,7 +110,7 @@
     <TNRef RefId="0" />
     <MS>
       <S N="Role">Administrator</S>
-      <S N="Path">C:\DATA\Projects\RASClientIP\Vars-empty.ps1</S>
+      <S N="Path">C:\DATA\PROJECTS\RASClientIP\Vars-empty.ps1</S>
       <Obj N="Right" RefId="14">
         <TNRef RefId="1" />
         <LST>
@@ -125,7 +125,7 @@
     <TNRef RefId="0" />
     <MS>
       <S N="Role">Operator</S>
-      <S N="Path">C:\DATA\Projects\RASClientIP</S>
+      <S N="Path">C:\DATA\PROJECTS\RASClientIP</S>
       <Obj N="Right" RefId="16">
         <TNRef RefId="1" />
         <LST>
@@ -141,7 +141,7 @@
     <TNRef RefId="0" />
     <MS>
       <S N="Role">Operator</S>
-      <S N="Path">C:\DATA\Projects\RASClientIP\LOGS</S>
+      <S N="Path">C:\DATA\PROJECTS\RASClientIP\LOGS</S>
       <Obj N="Right" RefId="18">
         <TNRef RefId="1" />
         <LST>
@@ -157,7 +157,7 @@
     <TNRef RefId="0" />
     <MS>
       <S N="Role">Operator</S>
-      <S N="Path">C:\DATA\Projects\RASClientIP\ACL</S>
+      <S N="Path">C:\DATA\PROJECTS\RASClientIP\ACL</S>
       <Obj N="Right" RefId="20">
         <TNRef RefId="1" />
         <LST>
@@ -172,7 +172,7 @@
     <TNRef RefId="0" />
     <MS>
       <S N="Role">Operator</S>
-      <S N="Path">C:\DATA\Projects\RASClientIP\RASClientIP.ps1</S>
+      <S N="Path">C:\DATA\PROJECTS\RASClientIP\RASClientIP.ps1</S>
       <Obj N="Right" RefId="22">
         <TNRef RefId="1" />
         <LST>
@@ -188,7 +188,7 @@
     <TNRef RefId="0" />
     <MS>
       <S N="Role">Operator</S>
-      <S N="Path">C:\DATA\Projects\RASClientIP\Vars.ps1</S>
+      <S N="Path">C:\DATA\PROJECTS\RASClientIP\Vars.ps1</S>
       <Obj N="Right" RefId="24">
         <TNRef RefId="1" />
         <LST>
@@ -204,7 +204,7 @@
     <TNRef RefId="0" />
     <MS>
       <S N="Role">Operator</S>
-      <S N="Path">C:\DATA\Projects\RASClientIP\.gitignore</S>
+      <S N="Path">C:\DATA\PROJECTS\RASClientIP\.gitignore</S>
       <Obj N="Right" RefId="26">
         <TNRef RefId="1" />
         <LST>
@@ -219,7 +219,7 @@
     <TNRef RefId="0" />
     <MS>
       <S N="Role">Operator</S>
-      <S N="Path">C:\DATA\Projects\RASClientIP\Vars-empty.ps1</S>
+      <S N="Path">C:\DATA\PROJECTS\RASClientIP\Vars-empty.ps1</S>
       <Obj N="Right" RefId="28">
         <TNRef RefId="1" />
         <LST>
