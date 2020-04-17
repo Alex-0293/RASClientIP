@@ -2,3 +2,4 @@ Vars.ps1
 Errors.log
 ACL/RoleAdministrator.csv
 ACL/RoleOperator.csv
+ACL/Roles.csv
