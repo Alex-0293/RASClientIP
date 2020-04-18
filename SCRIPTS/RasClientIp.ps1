@@ -40,10 +40,11 @@ trap {
 
 Clear-Host
 
-$MyScriptRoot = Get-Workdir
+[string]$MyScriptRoot        = Get-WorkDir
+[string]$Global:ProjectRoot  = Split-Path $MyScriptRoot -parent
 
-Get-VarsFromFile    "$MyScriptRoot\Vars.ps1"
-Initialize-Logging $MyScriptRoot "Latest"
+Get-VarsFromFile    "$ProjectRoot\VARS\Vars.ps1"
+Initialize-Logging   $ProjectRoot "Latest"
 
 $User = Get-VarFromAESFile $Global:GlobalKey1 $Global:APP_SCRIPT_ADMIN_Login
 $Pass = Get-VarFromAESFile $Global:GlobalKey1 $Global:APP_SCRIPT_ADMIN_Pass
