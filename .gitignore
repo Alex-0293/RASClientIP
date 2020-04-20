@@ -1,6 +1,4 @@
-Vars.ps1
-Errors.log
-ACL/RoleAdministrator.csv
-ACL/RoleOperator.csv
-ACL/Roles.csv
 ACL/Owner.csv
+ACL/Roles.csv
+LOGS/Errors.log
+SETTINGS/Settings.ps1
