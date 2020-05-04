@@ -1,66 +1,28 @@
 <#
-    Name:       Список пользователей домена с указанием IP при удаленном доступе, праве удаленного доступа и состояния пароля
-    Ver:           1.0
-    Date:         25.10.2017
-    Platform:  Windows server 2012
-    PSVer:       4.0
-    Author:     AlexK
+    .SYNOPSIS 
+        .AUTOR
+        .DATE
+        .VER
+    .DESCRIPTION
+    .PARAMETER
+    .EXAMPLE
 #>
-$ImportResult = Import-Module AlexkUtils  -PassThru
-if ($null -eq $ImportResult) {
-    Write-Host "Module 'AlexkUtils' does not loaded!"
-    exit 1
-}
-else {
-    $ImportResult = $null
-}
-#requires -version 3
+$MyScriptRoot = "C:\DATA\Projects\RASClientIP\SCRIPTS"
+$InitScript   = "C:\DATA\Projects\GlobalSettings\SCRIPTS\Init.ps1"
 
-#########################################################################
-function Get-WorkDir () {
-    if ($PSScriptRoot -eq "") {
-        if ($PWD -ne "") {
-            $MyScriptRoot = $PWD
-        }        
-        else {
-            Write-Host "Where i am? What is my work dir?"
-        }
-    }
-    else {
-        $MyScriptRoot = $PSScriptRoot
-    }
-    return $MyScriptRoot
-}
-Function Initialize-Script   () {
-    [string]$Global:MyScriptRoot = Get-WorkDir
-    [string]$Global:GlobalSettingsPath = "C:\DATA\Projects\GlobalSettings\SETTINGS\Settings.ps1"
-
-    Get-SettingsFromFile -SettingsFile $Global:GlobalSettingsPath
-    if ($GlobalSettingsSuccessfullyLoaded) {    
-        Get-SettingsFromFile -SettingsFile "$ProjectRoot\$($Global:SETTINGSFolder)\Settings.ps1"
-        if ($Global:LocalSettingsSuccessfullyLoaded) {
-            Initialize-Logging   "$ProjectRoot\$LOGSFolder\$ErrorsLogFileName" "Latest"
-            Write-Host "Logging initialized."            
-        }
-        Else {
-            Add-ToLog -Message "[Error] Error loading local settings!" -logFilePath "$(Split-Path -path $Global:MyScriptRoot -parent)\$LOGSFolder\$ErrorsLogFileName" -Display -Status "Error" -Format 'yyyy-MM-dd HH:mm:ss'
-            Exit 1 
-        }
-    }
-    Else { 
-        Add-ToLog -Message "[Error] Error loading global settings!" -logFilePath "$(Split-Path -path $Global:MyScriptRoot -parent)\LOGS\Errors.log" -Display -Status "Error" -Format 'yyyy-MM-dd HH:mm:ss'
-        Exit 1
-    }
-}
+. "$InitScript" -MyScriptRoot $MyScriptRoot
 # Error trap
 trap {
-    Get-ErrorReporting $_    
+    if ($Global:Logger) {
+        Get-ErrorReporting $_ 
+    }
+    Else {
+        Write-Host "There is error before logging initialized." -ForegroundColor Red
+    }   
     exit 1
 }
-#########################################################################
-
+################################# Script start here #################################
 Clear-Host
-Initialize-Script
 
 $User = Get-VarFromAESFile $Global:GlobalKey1 $Global:APP_SCRIPT_ADMIN_Login
 $Pass = Get-VarFromAESFile $Global:GlobalKey1 $Global:APP_SCRIPT_ADMIN_Pass
@@ -101,3 +63,6 @@ $output = Invoke-Command -ComputerName  $Global:Computer  -Credential $Credentia
 
 #$output.gettype()
 $output | Select-Object Sam, RASIp, DialIn, PasswordExpired, Enabled | Format-Table -AutoSize
+
+################################# Script end here ###################################
+. "$GlobalSettings\$SCRIPTSFolder\Finish.ps1"
